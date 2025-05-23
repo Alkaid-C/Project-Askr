@@ -10,7 +10,7 @@ This script creates an automated notification system for Bilibili live streams. 
 ARCHITECTURE:
 ┌─────────────────┐    Webhook    ┌──────────────────┐    HTTP     ┌─────────────────┐
 │ BililiveRecorder│─────────────→ │ This Script      │────────────→│ NapCat (QQ Bot) │
-│ (BREC)          │    POST       │ (Flask Server)   │   Request   │                 │
+│ (BREC)          │    POST       │ (Flask Server)   │   POST      │                 │
 └─────────────────┘               └──────────────────┘             └─────────────────┘
 
 EXTERNAL DEPENDENCIES:
