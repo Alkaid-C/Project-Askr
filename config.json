@@ -1,0 +1,48 @@
+{
+  "subscribers": {
+    "STREAMING_START": {
+      "groups": [325229812,699604621,123400243],
+      "friends": [1804326288]
+    },
+    "STREAMING_ENDED": {
+      "groups": [325229812,699604621,123400243],
+      "friends": [1804326288]
+    },
+    "DEBUG":{
+      "groups":[631608613],
+      "friends":[1804326288]
+    }
+  },
+  "messages": {
+    "STREAMING_START": {
+      "group_templates": [
+        [{"type": "text", "data": {"text": "啊啦，环角事务所又开门了，今天会遇到什么样的客人呢？https://live.bilibili.com/1921712061"}}],
+        [{"type": "text", "data": {"text": "（一边打开事务所的大门，一边小声嘟囔）如果只有我一个人喜欢埃瑟斯菲尔大人就好了...https://live.bilibili.com/1921712061"}}],
+        [{"type": "text", "data": {"text": "（哈欠）啊，又到了开门的时间呢...真是的，昨晚埃瑟斯菲尔大人弄得我腰好痛...https://live.bilibili.com/1921712061"}}],
+        [{"type": "text", "data": {"text": "欸嘿嘿嘿~https://live.bilibili.com/1921712061"}}],
+        [{"type": "text", "data": {"text": "埃瑟斯菲尔大人开播了。你是来看呢，来看呢，还是来看呢？（面带微笑，完全没有威胁的意思）https://live.bilibili.com/1921712061"}}]
+      ],
+      "private_templates": [
+        [{"type": "text", "data": {"text": "开播提醒发送中"}}]
+      ]
+    },
+    "STREAMING_ENDED": {
+      "group_templates": [
+        [{"type": "text", "data": {"text": "（关上环角事务所的大门）那美好的仗已经打完了，应行的路已经行尽了，当守的道已经守住了。从此以后，会有全程录播为埃瑟斯菲尔大人留存。"}}],
+        [{"type": "text", "data": {"text": "（熄灯）睡吧，睡吧，我亲爱的宝贝，埃瑟斯的双手轻轻摇着你。"}}],
+        [{"type": "text", "data": {"text": "（熄灯）如果今晚梦中也能见到埃瑟斯菲尔大人就好了。"}}]
+      ],
+      "private_templates": [
+        [{"type": "text", "data": {"text": "下播提醒发送中"}}]
+      ]
+    },
+    "DEBUG": {
+      "group_templates": [
+        [{"type": "text", "data": {"text": "debug信息"}}]
+      ],
+      "private_templates": [
+        [{"type": "text", "data": {"text": "debug信息"}}]
+      ]
+    }
+  }
+}
