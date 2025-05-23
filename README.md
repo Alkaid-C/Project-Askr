@@ -3,3 +3,6 @@
 
 关注[@埃因斯坦_Asuse](https://space.bilibili.com/3546831533378448)喵！
 关注[@埃因斯坦_Asuse](https://space.bilibili.com/3546831533378448)谢谢喵！
+
+### 使用
+本项目中的脚本均仅在Ubuntu 24.04 LTS Server、Python 3.12中测试、运行过，不保证在其他环境中的运行。使用前需安装并配置NapCatQQ、下载BililiveRecorder、安装bilibili-api、aiohttp和其他在脚本开头引用的依赖库。
