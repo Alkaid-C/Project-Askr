@@ -21,9 +21,8 @@ File Structure:
 │   └── Others/{event_type}.json # Meta events, requests, etc.
 └── napcat_plugin_manager.py # This script
 
-Author: Plugin Manager Development Team
 Version: 1.0.0
-Compatible with: OneBot 11, NapCat
+Compatible with: NapCat
 Python Version: 3.12+
 """
 
