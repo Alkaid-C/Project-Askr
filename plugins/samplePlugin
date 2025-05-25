@@ -1,0 +1,177 @@
+#!/usr/bin/env python3
+"""
+Sample Echo Plugin for NapCat Plugin Manager
+
+This plugin demonstrates the basic plugin structure and functionality.
+It responds to private messages with a simple echo format.
+
+Plugin Structure Requirements:
+1. MANIFEST: Dict mapping event types to handler function names
+2. Handler Functions: Must accept (simpleEvent, rawEvent) parameters
+3. Return Values: String, dict, list, or None
+
+Installation:
+1. Save this file in the plugins/ directory
+2. Restart the NapCat Plugin Manager
+3. Send a private message to the bot to test
+
+Author: Plugin Development Team
+Version: 1.0.0
+Compatible with: NapCat Plugin Manager v1.0.0
+"""
+
+# ============================================================================
+# PLUGIN MANIFEST
+# ============================================================================
+
+# Plugin manifest declares which events this plugin can handle
+# Format: {"EVENT_TYPE": "function_name"}
+MANIFEST = {
+    "MESSAGE_PRIVATE": "HandlePrivateMessage"
+}
+
+# ============================================================================
+# PLUGIN HANDLERS
+# ============================================================================
+
+def HandlePrivateMessage(simpleEvent, rawEvent):
+    """
+    Handle private message events with echo response.
+    
+    This function demonstrates basic plugin functionality by:
+    1. Extracting the text message from simplified event data
+    2. Creating a formatted response
+    3. Returning a string response (auto-converted to message)
+    
+    Plugin Function Contract:
+    - Must accept exactly two parameters: simpleEvent and rawEvent
+    - simpleEvent: Simplified data from InbondEventDataParser
+    - rawEvent: Complete OneBot 11 event data from NapCat
+    
+    For MESSAGE_PRIVATE events, simpleEvent contains:
+    {
+        "user_id": int,        # Sender's QQ number
+        "text_message": str    # Extracted text content
+    }
+    
+    Return Value Options:
+    - String: Simple text reply (recommended for basic responses)
+    - Dict: Structured API call {"action": "...", "data": {...}}
+    - List: Multiple actions [dict1, dict2, ...]
+    - None: No response
+    
+    Args:
+        simpleEvent (dict): Simplified event data with user_id and text_message
+        rawEvent (dict): Complete OneBot 11 event (for advanced usage)
+        
+    Returns:
+        str: Formatted echo response message
+    """
+    
+    # Extract user information and message content
+    userId = simpleEvent.get("user_id")
+    textMessage = simpleEvent.get("text_message", "")
+    
+    # Create formatted response message
+    response = f"Hello, you just told me: {textMessage}"
+    
+    # Return string response (will be auto-converted to proper message format)
+    return response
+
+# ============================================================================
+# ADVANCED EXAMPLE FUNCTIONS (NOT REGISTERED)
+# ============================================================================
+
+def ExampleStructuredResponse(simpleEvent, rawEvent):
+    """
+    Example of returning structured API calls instead of simple strings.
+    
+    This function is not registered in MANIFEST but shows how to use
+    the dict response format for more complex actions.
+    
+    Returns:
+        dict: Structured API call for sending messages
+    """
+    return {
+        "action": "send_private_msg",
+        "data": {
+            "user_id": simpleEvent.get("user_id"),
+            "message": [
+                {"type": "text", "data": {"text": "Structured response: "}},
+                {"type": "text", "data": {"text": simpleEvent.get("text_message", "")}}
+            ]
+        }
+    }
+
+def ExampleMultipleActions(simpleEvent, rawEvent):
+    """
+    Example of returning multiple actions to perform several operations.
+    
+    This function is not registered in MANIFEST but shows how to use
+    the list response format for multiple API calls.
+    
+    Returns:
+        list: Multiple API calls to execute in sequence
+    """
+    userId = simpleEvent.get("user_id")
+    
+    return [
+        {
+            "action": "send_private_msg", 
+            "data": {
+                "user_id": userId,
+                "message": [{"type": "text", "data": {"text": "First response"}}]
+            }
+        },
+        {
+            "action": "send_private_msg",
+            "data": {
+                "user_id": userId, 
+                "message": [{"type": "text", "data": {"text": "Second response"}}]
+            }
+        }
+    ]
+
+def ExampleAdvancedProcessing(simpleEvent, rawEvent):
+    """
+    Example of accessing raw event data for advanced processing.
+    
+    This shows how to use the complete OneBot 11 event data when
+    the simplified format doesn't provide enough information.
+    
+    Returns:
+        str: Response based on raw event analysis
+    """
+    # Access simplified data
+    textMessage = simpleEvent.get("text_message", "")
+    
+    # Access raw OneBot 11 data for advanced features
+    timestamp = rawEvent.get("time", 0)
+    messageId = rawEvent.get("message_id", 0)
+    senderInfo = rawEvent.get("sender", {})
+    senderNickname = senderInfo.get("nickname", "Unknown")
+    
+    # Create response with additional context
+    response = f"Hi {senderNickname}! Message ID {messageId} at {timestamp}: {textMessage}"
+    
+    return response
+
+# ============================================================================
+# PLUGIN METADATA (OPTIONAL)
+# ============================================================================
+
+# Optional plugin metadata for future plugin management features
+PLUGIN_INFO = {
+    "name": "Echo Plugin",
+    "version": "1.0.0", 
+    "description": "Simple echo plugin demonstrating basic functionality",
+    "author": "Plugin Development Team",
+    "compatible_manager_version": "1.0.0"
+}
+
+# Optional plugin configuration (for future config management)
+PLUGIN_CONFIG = {
+    "echo_prefix": "Hello, you just told me: ",
+    "max_echo_length": 1000,
+    "enable_debug": False
+}
